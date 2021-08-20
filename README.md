@@ -1,4 +1,4 @@
-# BotHawks- Automated Trading for CoinBase
+# BotHawks - Automated Trading for CoinBase
 
 <img src="https://github.com/poboisvert/BotHawks.com/raw/main/logo.jpg" height="400">
 
