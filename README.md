@@ -1,6 +1,6 @@
 # BotHawks - Automated Trading for CoinBase
 
-<img src="https://github.com/poboisvert/BotHawks.com/raw/main/logo.jpg" height="400">
+<img src="https://github.com/poboisvert/BotHawks.com/raw/main/logo.png" height="400">
 
 ### Folder Cassandra
 
@@ -41,6 +41,10 @@
 
 > use cryptocurrency_database
 
-> db.Cleaned_Dataset.find()
+> db.BTC_collection.find()
 
 > db.dropDatabase()
+
+#### References
+
+- https://github.com/danpaquin/coinbasepro-python

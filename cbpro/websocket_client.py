@@ -143,6 +143,8 @@ class WebsocketClient(object):
 
 
 if __name__ == "__main__":
+
+    # init
     import sys
     import cbpro
     import time
