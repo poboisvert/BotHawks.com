@@ -32,3 +32,15 @@
 - airflow webserver -p 8080
 
 - airflow scheduler
+
+#### MongoDB
+
+> mongo
+
+> show dbs
+
+> use cryptocurrency_database
+
+> db.Cleaned_Dataset.find()
+
+> db.dropDatabase()
