@@ -51,7 +51,7 @@ def collectData():
     while (wsClient.message_count < 5):
         print ("\nmessage_count =", "{} \n".format(wsClient.message_count))
         time.sleep(1)
-        
+
     #print(wsClient.mongo_collection)
     wsClient.close()
 
