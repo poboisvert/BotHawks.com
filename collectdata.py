@@ -1,8 +1,9 @@
 #This is the Python file to extract the songs from Spotify, transform the data and then load it into PostgreSQL.
 #It is placed into a function for my Airflow DAG to call
-import cbpro, time
+import cbpro, time, sys
 from pymongo import MongoClient
 import logging
+from cbpro.websocket_client import WebsocketClient
 
 logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(message)s')
 
@@ -12,7 +13,7 @@ db = mongo_client.cryptocurrency_database
 BTC_collection = db.BTC_collection
 
 
-class myWebsocketClient(cbpro.WebsocketClient):
+class myWebsocketClient(WebsocketClient):
     def on_open(self):
         self.url = "wss://ws-feed.pro.coinbase.com/"
         self.products = ["ETH-USD"]
@@ -51,6 +52,18 @@ def collectData():
     while (wsClient.message_count < 52):
         print ("\nmessage_count =", "{} \n".format(wsClient.message_count))
         time.sleep(1)
+    try:
+        #while True:
+        while (wsClient.message_count < 52):
+            print ("\nmessage_count =", "{} \n".format(wsClient.message_count))
+            time.sleep(1)
+    except KeyboardInterrupt:
+        wsClient.close()
+
+    if wsClient.error:
+        sys.exit(1)
+    else:
+        sys.exit(0)
 
     #print(wsClient.mongo_collection)
     wsClient.close()
