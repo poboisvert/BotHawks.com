@@ -36,37 +36,25 @@ class myWebsocketClient(WebsocketClient):
         print("-- Goodbye! --")
 
 def collectData():
-    from pymongo import MongoClient
-    import cbpro
-    mongo_client = MongoClient('mongodb://localhost:27017/')
-
-    # Mongo DB - INIT
-    db = mongo_client.cryptocurrency_database
-    BTC_collection = db.BTC_collection
-
     # cbpro - INIT
     wsClient = myWebsocketClient(url="wss://ws-feed.pro.coinbase.com", products="ETH-USD", mongo_collection=BTC_collection, should_print=False, channels=["ticker"])
     wsClient.start()
 
     # Logging Req - INIT
-    while (wsClient.message_count < 52):
-        print ("\nmessage_count =", "{} \n".format(wsClient.message_count))
-        time.sleep(1)
+    #while (wsClient.message_count < 6):
     try:
-        #while True:
-        while (wsClient.message_count < 52):
-            print ("\nmessage_count =", "{} \n".format(wsClient.message_count))
+        while True:
+            print("\nMessageCount =", "%i \n" % wsClient.message_count)
             time.sleep(1)
     except KeyboardInterrupt:
         wsClient.close()
-
+    #print(wsClient.mongo_collection)
+    #wsClient.close()
+    
     if wsClient.error:
         sys.exit(1)
     else:
         sys.exit(0)
-
-    #print(wsClient.mongo_collection)
-    wsClient.close()
 
 if __name__ == '__main__':
     collectData()

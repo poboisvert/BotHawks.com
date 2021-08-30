@@ -6,7 +6,6 @@
 
 import requests
 
-
 class PublicClient(object):
     """cbpro public client API.
 
@@ -114,38 +113,6 @@ class PublicClient(object):
         return self._send_message('get',
                                   '/products/{}/ticker'.format(product_id))
 
-    def get_product_trades(self, product_id, before='', after='', limit=None, result=None):
-        """List the latest trades for a product.
-
-        This method returns a generator which may make multiple HTTP requests
-        while iterating through it.
-
-        Args:
-             product_id (str): Product
-             before (Optional[str]): start time in ISO 8601
-             after (Optional[str]): end time in ISO 8601
-             limit (Optional[int]): the desired number of trades (can be more than 100,
-                          automatically paginated)
-             results (Optional[list]): list of results that is used for the pagination
-        Returns:
-             list: Latest trades. Example::
-                 [{
-                     "time": "2014-11-07T22:19:28.578544Z",
-                     "trade_id": 74,
-                     "price": "10.00000000",
-                     "size": "0.01000000",
-                     "side": "buy"
-                 }, {
-                     "time": "2014-11-07T01:08:43.642366Z",
-                     "trade_id": 73,
-                     "price": "100.00000000",
-                     "size": "0.01000000",
-                     "side": "sell"
-         }]
-        """
-        return self._send_paginated_message('/products/{}/trades'
-                                            .format(product_id))
-
     def get_product_historic_rates(self, product_id, start=None, end=None,
                                    granularity=None):
         """Historic rates for a product.
@@ -198,44 +165,6 @@ class PublicClient(object):
         return self._send_message('get',
                                   '/products/{}/candles'.format(product_id),
                                   params=params)
-
-    def get_product_24hr_stats(self, product_id):
-        """Get 24 hr stats for the product.
-
-        Args:
-            product_id (str): Product
-
-        Returns:
-            dict: 24 hour stats. Volume is in base currency units.
-                Open, high, low are in quote currency units. Example::
-                    {
-                        "open": "34.19000000",
-                        "high": "95.70000000",
-                        "low": "7.06000000",
-                        "volume": "2.41000000"
-                    }
-
-        """
-        return self._send_message('get',
-                                  '/products/{}/stats'.format(product_id))
-
-    def get_currencies(self):
-        """List known currencies.
-
-        Returns:
-            list: List of currencies. Example::
-                [{
-                    "id": "BTC",
-                    "name": "Bitcoin",
-                    "min_size": "0.00000001"
-                }, {
-                    "id": "USD",
-                    "name": "United States Dollar",
-                    "min_size": "0.01000000"
-                }]
-
-        """
-        return self._send_message('get', '/currencies')
 
     def get_time(self):
         """Get the API server time.

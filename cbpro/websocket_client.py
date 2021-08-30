@@ -124,7 +124,7 @@ class WebsocketClient(object):
 
     def on_open(self):
         if self.should_print:
-            print("-- Subscribed! --\n")
+            print("-- Subscribed --\n")
 
     def on_close(self):
         if self.should_print:
