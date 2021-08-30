@@ -1,6 +1,6 @@
 #This is the Python file to extract the songs from Spotify, transform the data and then load it into PostgreSQL.
 #It is placed into a function for my Airflow DAG to call
-import cbpro, time
+import cbpro, time, sys
 from pymongo import MongoClient
 import logging
 from cbpro.websocket_client import WebsocketClient
