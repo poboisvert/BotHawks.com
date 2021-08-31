@@ -18,6 +18,7 @@ from cbpro.cbpro_auth import get_auth_headers
 
 
 class WebsocketClient(object):
+    # Channel options: ['ticker', 'user', 'matches', 'level2', 'full']
     def __init__(
             self,
             url="wss://ws-feed.pro.coinbase.com",
@@ -29,9 +30,7 @@ class WebsocketClient(object):
             api_key="",
             api_secret="",
             api_passphrase="",
-            # Make channels a required keyword-only argument; see pep3102
             *,
-            # Channel options: ['ticker', 'user', 'matches', 'level2', 'full']
             channels):
         self.url = url
         self.products = products

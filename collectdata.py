@@ -5,6 +5,9 @@ from pymongo import MongoClient
 import logging
 from cbpro.websocket_client import WebsocketClient
 
+import logging
+from pprint import pformat
+
 logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(message)s')
 
 # specify the database and collection
