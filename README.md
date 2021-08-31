@@ -48,3 +48,4 @@
 #### References
 
 - https://github.com/danpaquin/coinbasepro-python
+- https://github.com/danielktaylor/PyLimitBook
