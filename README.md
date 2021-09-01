@@ -1,5 +1,7 @@
 # BotHawks - Automated Trading for CoinBase
 
+The purpose of this project is to simply and provide an easy access to fetch price quotation form the coinbase API.
+
 <img src="https://github.com/poboisvert/BotHawks.com/raw/main/logo.png" height="400">
 
 ### Folder Cassandra
@@ -7,8 +9,6 @@
 - Project_Template.ipynb - Performs ETL
 - event_data - CSV files to be pre-processed
 - event_data_etl.csv - Streamlined file to create database from
-
-### Folder AWS
 
 ### Venv
 
