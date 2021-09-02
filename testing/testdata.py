@@ -39,8 +39,8 @@ async def get_websocket_data():
             return
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(get_websocket_data())
+    asyncio.run(get_websocket_data())    
+    get_beginning_level_3()
 
     global messages
     global latencies
