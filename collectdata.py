@@ -4,9 +4,12 @@ import cbpro, time, sys
 from pymongo import MongoClient
 import logging
 from cbpro.websocket_client import WebsocketClient
+from strategy.statistics import Tree
 
 import logging
 from pprint import pformat
+from datetime import datetime
+import json 
 
 logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(message)s')
 
@@ -14,7 +17,6 @@ logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(messag
 mongo_client = MongoClient('mongodb://localhost:27017/')
 db = mongo_client.cryptocurrency_database
 BTC_collection = db.BTC_collection
-
 
 class myWebsocketClient(WebsocketClient):
     def on_open(self):
@@ -60,4 +62,12 @@ def collectData():
         sys.exit(0)
 
 if __name__ == '__main__':
-    collectData()
+    historical_datetime = datetime(year=2016, month=1, day=1,
+                                   hour=0, minute=0, second=0)
+    #collectData()
+
+    order_book = Tree()
+    # Collection Name - ML
+    collection_cursor = BTC_collection.find()
+    df = list(collection_cursor)
+    print(df)

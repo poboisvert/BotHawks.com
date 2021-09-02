@@ -1,4 +1,4 @@
-# BotHawks - Automated Trading for CoinBase
+# BotHawks - Automated Trade Recommendation for CoinBase
 
 The purpose of this project is to simply and provide an easy access to fetch price quotation form the coinbase API.
 
@@ -49,3 +49,4 @@ The purpose of this project is to simply and provide an easy access to fetch pri
 
 - https://github.com/danpaquin/coinbasepro-python
 - https://github.com/danielktaylor/PyLimitBook
+- https://towardsdatascience.com/moving-averages-in-python-16170e20f6c#:~:text=The%20simple%20moving%20average%20is,at%20the%20expense%20of%20accuracy.&text=The%20easiest%20way%20to%20calculate,is%20by%20using%20the%20pandas.
