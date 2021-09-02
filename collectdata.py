@@ -7,6 +7,7 @@ from cbpro.websocket_client import WebsocketClient
 
 import logging
 from pprint import pformat
+from datetime import datetime
 
 logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(message)s')
 
@@ -60,4 +61,7 @@ def collectData():
         sys.exit(0)
 
 if __name__ == '__main__':
+    historical_datetime = datetime(year=2016, month=1, day=1,
+                                   hour=0, minute=0, second=0)
+
     collectData()

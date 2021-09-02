@@ -1,4 +1,4 @@
-# BotHawks - Automated Trading for CoinBase
+# BotHawks - Automated Trade Recommendation for CoinBase
 
 The purpose of this project is to simply and provide an easy access to fetch price quotation form the coinbase API.
 
