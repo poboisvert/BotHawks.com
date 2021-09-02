@@ -4,6 +4,7 @@ import cbpro, time, sys
 from pymongo import MongoClient
 import logging
 from cbpro.websocket_client import WebsocketClient
+from strategy.statistics import Tree
 
 import logging
 from pprint import pformat
@@ -63,5 +64,6 @@ def collectData():
 if __name__ == '__main__':
     historical_datetime = datetime(year=2016, month=1, day=1,
                                    hour=0, minute=0, second=0)
-
     collectData()
+
+    order_book = Tree()
