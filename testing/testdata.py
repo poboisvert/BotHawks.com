@@ -7,13 +7,6 @@ from dateutil.tz import tzlocal
 import requests
 from websocket import create_connection
 
-ARGS = argparse.ArgumentParser(description='Coinbase Exchange Data Collector')
-ARGS.add_argument('--m', action='store', dest='minutes', default=5, help='Minutes to run')
-args = ARGS.parse_args()
-
-begin = datetime.now(tzlocal())
-end = begin + timedelta(5)
-
 def get_beginning_level_3():
     global beginning_level_3
     beginning_level_3 = requests.get('https://api.pro.coinbase.com/products/ETH-USD/book?level=3').json()
@@ -35,7 +28,6 @@ async def get_websocket_data():
     coinbase_websocket.send(json.dumps(params))
 
     while True: 
-        
         message =  coinbase_websocket.recv()
         message = json.loads(message)
         messages += [message]
@@ -43,7 +35,7 @@ async def get_websocket_data():
         print(count)
         print(datetime.now(tzlocal()))
 
-        if count == 5:
+        if count == 10:
             get_beginning_level_3()
             return
 
@@ -53,6 +45,7 @@ if __name__ == '__main__':
 
     global messages
     global latencies
+    global beginning_level_3
 
     first_sequence = beginning_level_3['sequence']
     print(messages)
