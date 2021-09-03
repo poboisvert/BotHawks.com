@@ -28,6 +28,7 @@ class myWebsocketClient(WebsocketClient):
         self.mongo_collection = BTC_collection
         self.should_print = False
         self.channels = ["ticker"]
+
         print("Lets count the messages!")
 
     def on_message(self, msg):
@@ -39,27 +40,61 @@ class myWebsocketClient(WebsocketClient):
         if self.mongo_collection:  # dump JSON to given mongo collection
             #self.mongo_collection.insert_one(msg)
             # print(msg)
+            product_id = 0
+            price = 0
+            volume_24h = 0
+            high_24h = 0
+            low_24h = 0
+            time = 0
+            volume = 0
+
             for key, value in msg.items():
                 if key=="product_id":
                     product_id = value
-                    print(product_id) 
+                else:
+                    pass
 
                 if key=="price":
                     price = value
-                    print(price) 
+                else:
+                    pass
 
                 if key=="volume_24h":
                     volume_24h = value
-                    print(volume_24h) 
+                else:
+                    pass
 
                 if key=="high_24h":
                     high_24h = value
-                    print(high_24h) 
+                else:
+                    pass
 
                 if key=="low_24h":
                     low_24h = value
-                    print(low_24h) 
-                    
+                else:
+                    pass
+
+                if key=="time":
+                    time = value
+                else:
+                    pass
+
+                if key=="last_size":
+                    volume = value
+                else:
+                    pass
+
+                new_data = {
+                    "cryptocurrency":product_id,
+                    "timestamp":time,
+                    "low":low_24h,
+                    "high":high_24h,
+                    "open":price,
+                    "close":high_24h,
+                    "volume":volume_24h,
+                }
+                #print(new_data)
+                self.mongo_collection.insert_one(new_data)
             return('Key Not Found')
 
 
@@ -137,12 +172,7 @@ def getLive():
 if __name__ == '__main__':
     start_date =  datetime.strptime("2019-01-01", "%Y-%m-%d")
 
-    # Fetch historical
-    f = open("data/historical.json", "a")
-    while(start_date.date() <= datetime.today().date()):
-        getHistorical("ETH", start_date.date(),(start_date + timedelta(days=300)).date(),86400),
-        start_date = (start_date+timedelta(days=300)) 
-    f.close()
+
 
     # { "_id" : ObjectId("613295033449e25402609069"), "cryptocurrency" : "ETH", "timestamp" : 1570665600, "low" : 187.29, "high" : 194.85, "open" : 193.26, "close" : 191.79, "volume" : 86674.1411952 }
     
