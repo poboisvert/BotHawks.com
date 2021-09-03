@@ -67,20 +67,20 @@ class Tree(object):
         else:
             del self.received_orders[order_id]
 
-def sma_all():
-    moving_averages = []
-    window_size = 3
+    def sma_all():
+        moving_averages = []
+        window_size = 3
 
-    while i < len(numbers) - window_size + 1:
-        this_window = numbers[i : i + window_size]
+        while i < len(numbers) - window_size + 1:
+            this_window = numbers[i : i + window_size]
 
-        window_average = sum(this_window) / window_size
-        moving_averages.append(window_average)
-        i += 1
+            window_average = sum(this_window) / window_size
+            moving_averages.append(window_average)
+            i += 1
 
 
-def buyer_strategy(order_book, open_orders, spreads):
-    pass
+    def buyer_strategy(order_book, open_orders, spreads):
+        pass
 
 #filter_id = Tree('MVV')
 #print(filter_id.name)

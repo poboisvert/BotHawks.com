@@ -1,0 +1,81 @@
+[
+    {
+        "channels": [
+            {
+                "name": "ticker",
+                "product_ids": [
+                    "ETH-USD"
+                ]
+            }
+        ],
+        "type": "subscriptions"
+    },
+    {
+        "best_ask": "3783.33",
+        "best_bid": "3782.90",
+        "high_24h": "3834.98",
+        "last_size": "0.00252838",
+        "low_24h": "3710.59",
+        "open_24h": "3765.5",
+        "price": "3783.33",
+        "product_id": "ETH-USD",
+        "sequence": 20425676491,
+        "side": "buy",
+        "time": "2021-09-03T03:12:18.456152Z",
+        "trade_id": 151388626,
+        "type": "ticker",
+        "volume_24h": "196072.47145201",
+        "volume_30d": "5805365.74091185"
+    },
+    {
+        "best_ask": "3783.32",
+        "best_bid": "3782.90",
+        "high_24h": "3834.98",
+        "last_size": "0.00381004",
+        "low_24h": "3710.59",
+        "open_24h": "3765.5",
+        "price": "3783.32",
+        "product_id": "ETH-USD",
+        "sequence": 20425676641,
+        "side": "buy",
+        "time": "2021-09-03T03:12:19.138275Z",
+        "trade_id": 151388627,
+        "type": "ticker",
+        "volume_24h": "196072.47526205",
+        "volume_30d": "5805365.74472189"
+    },
+    {
+        "best_ask": "3783.32",
+        "best_bid": "3783.31",
+        "high_24h": "3834.98",
+        "last_size": "0.00370298",
+        "low_24h": "3710.59",
+        "open_24h": "3765.5",
+        "price": "3783.31",
+        "product_id": "ETH-USD",
+        "sequence": 20425676866,
+        "side": "sell",
+        "time": "2021-09-03T03:12:19.733216Z",
+        "trade_id": 151388628,
+        "type": "ticker",
+        "volume_24h": "196072.47896503",
+        "volume_30d": "5805365.74842487"
+    },
+    {
+        "best_ask": "3783.32",
+        "best_bid": "3783.31",
+        "high_24h": "3834.98",
+        "last_size": "0.06045687",
+        "low_24h": "3710.59",
+        "open_24h": "3765.5",
+        "price": "3783.31",
+        "product_id": "ETH-USD",
+        "sequence": 20425676869,
+        "side": "sell",
+        "time": "2021-09-03T03:12:19.736597Z",
+        "trade_id": 151388629,
+        "type": "ticker",
+        "volume_24h": "196072.53942190",
+        "volume_30d": "5805365.80888174"
+    }
+]

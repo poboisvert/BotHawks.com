@@ -9,6 +9,7 @@ from strategy.statistics import Tree
 import logging
 from pprint import pformat
 from datetime import datetime
+import json 
 
 logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(message)s')
 
@@ -16,7 +17,6 @@ logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(messag
 mongo_client = MongoClient('mongodb://localhost:27017/')
 db = mongo_client.cryptocurrency_database
 BTC_collection = db.BTC_collection
-
 
 class myWebsocketClient(WebsocketClient):
     def on_open(self):
@@ -64,6 +64,10 @@ def collectData():
 if __name__ == '__main__':
     historical_datetime = datetime(year=2016, month=1, day=1,
                                    hour=0, minute=0, second=0)
-    collectData()
+    #collectData()
 
     order_book = Tree()
+    # Collection Name - ML
+    collection_cursor = BTC_collection.find()
+    df = list(collection_cursor)
+    print(df)
