@@ -38,8 +38,8 @@ class myWebsocketClient(WebsocketClient):
                    "\t@ {:.3f}".format(float(msg["price"])))
 
         if self.mongo_collection:  # dump JSON to given mongo collection
-            #self.mongo_collection.insert_one(msg)
-            # print(msg)
+            #self.mongo_collection.insert_one(msg) # RAW to MongoDB
+
             product_id = 0
             price = 0
             volume_24h = 0
@@ -51,38 +51,18 @@ class myWebsocketClient(WebsocketClient):
             for key, value in msg.items():
                 if key=="product_id":
                     product_id = value
-                else:
-                    pass
-
                 if key=="price":
                     price = value
-                else:
-                    pass
-
                 if key=="volume_24h":
                     volume_24h = value
-                else:
-                    pass
-
                 if key=="high_24h":
                     high_24h = value
-                else:
-                    pass
-
                 if key=="low_24h":
                     low_24h = value
-                else:
-                    pass
-
                 if key=="time":
                     time = value
-                else:
-                    pass
-
                 if key=="last_size":
                     volume = value
-                else:
-                    pass
 
                 new_data = {
                     "cryptocurrency":product_id,
@@ -93,7 +73,7 @@ class myWebsocketClient(WebsocketClient):
                     "close":high_24h,
                     "volume":volume_24h,
                 }
-                #print(new_data)
+
                 self.mongo_collection.insert_one(new_data)
             return('Key Not Found')
 
@@ -104,10 +84,8 @@ class myWebsocketClient(WebsocketClient):
 # real time data collector
 def getHistorical(crypto,start_date,end_date,gran):
 
-    t_0 = time.time()
     # call API
     URL = 'https://api.pro.coinbase.com/products/{0}-{1}/{2}?start={3}&end={4}&granularity={5}'.format(crypto, "USD", 'candles',start_date,end_date,gran)
-    #print(uri)
     res = requests.get(URL)
 
     if (res.status_code==200):
@@ -130,7 +108,6 @@ def getHistorical(crypto,start_date,end_date,gran):
             # Write JSON
             f.write(json.dumps(new_data))
             f.write('\n')
-            #print(json.dumps(new_data))
 
             # MongoDB
             double_id = BTC_collection.find_one(raw_data[i][0])
@@ -139,10 +116,10 @@ def getHistorical(crypto,start_date,end_date,gran):
                 BTC_collection.insert_one(new_data)
 
         # debug / print message
-        print('API request at time {0}'.format(dt.datetime.utcnow()))
+        print('SUCCESS API request at time {0}'.format(dt.datetime.utcnow()))
         
     else:
-        print('Failed API request at time {0}'.format(dt.datetime.utcnow()))
+        print('FAILED API request at time {0}'.format(dt.datetime.utcnow()))
 
 def getLive():
     # cbpro - INIT
@@ -150,7 +127,7 @@ def getLive():
         wsClient = myWebsocketClient(url="wss://ws-feed.pro.coinbase.com", products="ETH-USD", mongo_collection=BTC_collection, should_print=False, channels=["ticker"])
         wsClient.start()
     except gaierror:
-        print('socket.gaierror - had a problem connecting to Coinbase feed')
+        print('socket.gaierror - No connection to Coinbase')
         return
 
     # Logging Req - INIT
@@ -161,25 +138,24 @@ def getLive():
             time.sleep(1)
     except KeyboardInterrupt:
         wsClient.close()
-    #print(wsClient.mongo_collection)
-    #wsClient.close()
-    
+
     if wsClient.error:
         sys.exit(1)
     else:
         sys.exit(0)
 
 if __name__ == '__main__':
-    start_date =  datetime.strptime("2019-01-01", "%Y-%m-%d")
+    start_date =  datetime.strptime("2018-09-01", "%Y-%m-%d")
 
+    # Logging Req - INIT
+    f = open("data/historical.json", "a")
+    while(start_date.date() <= datetime.today().date()):
+        getHistorical("ETH", start_date.date(),(start_date + timedelta(days=300)).date(),86400),
+        start_date = (start_date+timedelta(days=300)) 
+    f.close()
 
-
-    # { "_id" : ObjectId("613295033449e25402609069"), "cryptocurrency" : "ETH", "timestamp" : 1570665600, "low" : 187.29, "high" : 194.85, "open" : 193.26, "close" : 191.79, "volume" : 86674.1411952 }
-    
     # Fetch live
-    getLive()
-
-    # { "_id" : ObjectId("613297483449e25473531591"), "type" : "ticker", "sequence" : NumberLong("20448265771"), "product_id" : "ETH-USD", "price" : "3933.53", "open_24h" : "3830.58", "volume_24h" : "272162.52500599", "low_24h" : "3710.59", "high_24h" : "4030.35", "volume_30d" : "6015365.39397879", "best_bid" : "3933.37", "best_ask" : "3933.53", "side" : "buy", "time" : "2021-09-03T21:44:40.982168Z", "trade_id" : 151717814, "last_size" : "0.74491454" }
+    #getLive()
 
     order_book = Tree()
     # Collection Name - ML
