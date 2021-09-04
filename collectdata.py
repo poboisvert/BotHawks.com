@@ -147,7 +147,7 @@ def getLive():
 if __name__ == '__main__':
     start_date =  datetime.strptime("2018-09-01", "%Y-%m-%d")
 
-    # Logging Req - INIT
+    # Logging Req
     f = open("data/historical.json", "a")
     while(start_date.date() <= datetime.today().date()):
         getHistorical("ETH", start_date.date(),(start_date + timedelta(days=300)).date(),86400),
