@@ -5,6 +5,8 @@ import Container from './common/Container';
 import Header from './components/Header';
 import PlotlyComponent from './components/Plotly';
 
+import './App.css';
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [latestPrice, setLatestPrice] = useState(0);

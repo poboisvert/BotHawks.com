@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Block = styled.section`
-  position: relative;
-  padding: 7.5rem 0 1rem;
-  text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 7.5rem 0 0;
+
   @media screen and (max-width: 768px) {
     padding: 5.5rem 0 3rem;
   }

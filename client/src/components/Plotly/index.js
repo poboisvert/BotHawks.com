@@ -4,8 +4,24 @@ import * as S from './styles';
 
 function Plotly({ data }) {
   return (
-    <S.ContentWrapper>
+    <S.ContentWrapper id='chart'>
       <Plot
+        useResizeHandler
+        style={{ width: '100%' }}
+        layout={{
+          // width: 320,
+          // height: 240,
+          autosize: true,
+          dragmode: true,
+          margin: {
+            l: 0,
+            r: 0,
+            t: 10,
+            b: 10,
+            pad: 10,
+            autoexpand: true,
+          },
+        }}
         data={[
           {
             // setIsPreview(data.index.map((t) => new Date(t)))

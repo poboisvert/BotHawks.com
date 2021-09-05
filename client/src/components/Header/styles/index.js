@@ -1,17 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 1280px;
+  text-align: center;
 
-  position: fixed;
-  top: 0;
-  z-index: 10;
-  background-color: #fff;
-  margin: 20px 0 0 20px;
+  padding-top: 10px;
+  z-index: 999;
 
   @media only screen and (max-width: 768px) {
     width: 340px;
@@ -25,6 +23,7 @@ export const CustomNavLinkSmall = styled.div`
   color: black;
   transition: color 0.2s ease-in;
   margin: 0.25rem 2rem;
+  text-align: center;
 
   @media only screen and (max-width: 768px) {
     margin: 1.25rem 2rem;
@@ -34,5 +33,6 @@ export const CustomNavLinkSmall = styled.div`
 export const Span = styled.span`
   align-items: center;
   justify-content: center;
+  text-align: center;
   cursor: pointer;
 `;

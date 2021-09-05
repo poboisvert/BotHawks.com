@@ -3,7 +3,7 @@ import Logo from '../logo.png';
 
 const Block = ({ content }) => {
   return (
-    <S.Block>
+    <S.Block id='mission'>
       <S.ContentWrapper>
         <S.Logo src={Logo} />
         <S.Content>{content}</S.Content>

@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import * as S from './styles';
-// import { Container, Leftside, Rightside } from "./styles/Header";
+import { Link } from 'react-scroll';
 
 export default function Header() {
   return (
     <>
-      <S.Container>
+      <S.Container id='home'>
         <S.CustomNavLinkSmall>
-          <S.Span>Chart</S.Span>
-        </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall>
-          <S.Span>Mission</S.Span>
-        </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall style={{ width: '180px' }}>
           <S.Span>
-            <b>Introduction</b>
+            <Link to='chart' spy={true} smooth={true}>
+              Chart
+            </Link>
+          </S.Span>
+        </S.CustomNavLinkSmall>
+        <S.CustomNavLinkSmall>
+          <S.Span>
+            <Link to='mission' spy={true} smooth={true}>
+              Mission
+            </Link>
+          </S.Span>
+        </S.CustomNavLinkSmall>
+        <S.CustomNavLinkSmall>
+          <S.Span>
+            <Link to='home' spy={true} smooth={true}>
+              First!
+            </Link>
           </S.Span>
         </S.CustomNavLinkSmall>
       </S.Container>
