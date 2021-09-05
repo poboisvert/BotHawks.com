@@ -31,6 +31,7 @@ function App() {
         parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2)
       );
     });
+
     const timerID = setInterval(() => {
       fetchData().then((chartData) => {
         setLatestPrice(
@@ -38,12 +39,14 @@ function App() {
         );
         setData(chartData);
       });
-    }, 1000 * 10);
+    }, 1000 * 2);
     return () => {
       clearInterval(timerID);
     };
   }, []);
+
   console.log(latestPrice);
+
   if (data) {
     return (
       <>
