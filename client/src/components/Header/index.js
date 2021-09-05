@@ -8,21 +8,36 @@ export default function Header() {
       <S.Container id='home'>
         <S.CustomNavLinkSmall>
           <S.Span>
-            <Link to='chart' spy={true} smooth={true}>
+            <Link
+              style={{ textDecoration: 'none', color: '#222323' }}
+              to='chart'
+              spy={true}
+              smooth={true}
+            >
               Chart
             </Link>
           </S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall>
           <S.Span>
-            <Link to='mission' spy={true} smooth={true}>
+            <Link
+              style={{ textDecoration: 'none', color: '#222323' }}
+              to='mission'
+              spy={true}
+              smooth={true}
+            >
               Mission
             </Link>
           </S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall>
           <S.Span>
-            <Link to='home' spy={true} smooth={true}>
+            <Link
+              style={{ textDecoration: 'none', color: '#222323' }}
+              to='home'
+              spy={true}
+              smooth={true}
+            >
               First!
             </Link>
           </S.Span>

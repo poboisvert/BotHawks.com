@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: sticky;
@@ -7,6 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: #f0f6f0;
 
   padding-top: 10px;
   z-index: 999;

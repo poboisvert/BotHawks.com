@@ -13,6 +13,8 @@ function Plotly({ data }) {
           // height: 240,
           autosize: true,
           dragmode: true,
+          plot_bgcolor: '#f0f6f0',
+          paper_bgcolor: '#f0f6f0',
           margin: {
             l: 0,
             r: 0,
@@ -32,7 +34,7 @@ function Plotly({ data }) {
             mode: 'lines+points',
             marker: {
               size: 5,
-              color: 'blue',
+              color: 'black',
               colorscale: 'Viridis',
               opacity: 0.8,
             },

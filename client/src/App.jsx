@@ -4,7 +4,7 @@ import Block from './common/Block';
 import Container from './common/Container';
 import Header from './components/Header';
 import PlotlyComponent from './components/Plotly';
-
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -47,16 +47,18 @@ function App() {
     };
   }, []);
 
-  //console.log(latestPrice);
+  console.log(latestPrice);
 
   if (data) {
     return (
       <>
-        <Container>
+        <Router>
           <Header />
-          <Block content='Our mission is to offer Coinbase live data' />
-          <PlotlyComponent data={data} />
-        </Container>
+          <Container>
+            <Block content='Our mission is to offer Coinbase live data' />
+            <PlotlyComponent data={data} />
+          </Container>
+        </Router>
       </>
     );
   } else {
