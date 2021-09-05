@@ -47,7 +47,7 @@ function App() {
     };
   }, []);
 
-  console.log(latestPrice);
+  //console.log(latestPrice);
 
   if (data) {
     return (
