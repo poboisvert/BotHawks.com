@@ -4,6 +4,8 @@ The purpose of this project is to simply and provide an easy access to fetch pri
 
 <img src="https://github.com/poboisvert/BotHawks.com/raw/main/logo.png" height="400">
 
+This landing page offer (1) live price update from the Coinbase API (2) and a subsciption module to save email addresses
+
 ### Folder Cassandra
 
 - Project_Template.ipynb - Performs ETL
