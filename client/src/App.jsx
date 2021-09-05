@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import callAPI from './api';
-import PlotlyComponent from './Plotly';
+import Block from './common/Block';
+import Container from './common/Container';
+import Header from './components/Header';
+import PlotlyComponent from './components/Plotly';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,16 +44,19 @@ function App() {
     };
   }, []);
   console.log(latestPrice);
-
-  return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>
+  if (data) {
+    return (
+      <>
+        <Container>
+          <Header />
+          <Block content='Our mission is to offer Coinbase live data' />
           <PlotlyComponent data={data} />
-        </p>
-      </header>
-    </div>
-  );
+        </Container>
+      </>
+    );
+  } else {
+    return <h1>Loading</h1>;
+  }
 }
 
 export default App;
