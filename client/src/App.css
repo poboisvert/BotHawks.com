@@ -1,7 +1,7 @@
 body,
 html,
 a {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'monospace';
 }
 body {
   margin: 0;
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'monospace', monospace;
   color: #222323;
   font-size: 2.575rem;
   line-height: 3.0625rem;
