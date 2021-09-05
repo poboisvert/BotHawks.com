@@ -1,15 +1,15 @@
 const callAPI = async (url) => {
-  let response = await fetch(url, {
+  let res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   });
-  if (!response.ok) {
-    const message = `An error has occured: ${response.status}`;
+  if (!res.ok) {
+    const message = `An error has occured: ${res.status}`;
     throw new Error(message);
   }
-  return response.json();
+  return res.json();
 };
 
 export default callAPI;
