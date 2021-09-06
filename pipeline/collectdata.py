@@ -152,7 +152,7 @@ if __name__ == '__main__':
     f.close()
 
     # Fetch live
-    getLive()
+    #getLive()
 
     order_book = Tree()
     # Collection Name - ML
