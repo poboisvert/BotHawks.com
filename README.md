@@ -2,7 +2,7 @@
 
 The purpose of this project is to simply and provide an easy access to fetch price quotation form the coinbase API.
 
-URL: https://bothawks.web.app/
+URL: http://bothawks.com/ | https://bothawks.web.app/
 
 ## Front End
 
