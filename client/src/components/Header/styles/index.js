@@ -7,8 +7,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #f0f6f0;
-
   padding-top: 10px;
   z-index: 999;
 
@@ -21,7 +19,8 @@ export const Container = styled.div`
 
 export const CustomNavLinkSmall = styled.div`
   font-size: 1rem;
-  color: black;
+  color: white;
+
   transition: color 0.2s ease-in;
   margin: 0.25rem 2rem;
   text-align: center;

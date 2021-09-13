@@ -1,35 +1,35 @@
 import * as S from './styles';
 import logo from '../logo.png';
-import logo_nigh from '../logo_night.png';
+import logo_night from '../logo_night.png';
 
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../ThemeSlice';
+import { lightTheme, darkTheme } from '../ThemeStyle';
+
 // BrowserRouter is the router implementation for HTML5 browsers (vs Native).
 // Link is your replacement for anchor tags.
 // Route is the conditionally shown component based on matching a path to a URL.
 // Switch returns only the first matching route rather than all matching routes.
 
-const Block = ({ content }) => {
-  const [logo, setLogo] = useState('');
-  const [today, setDate] = useState(new Date()); // Save the current date to be able to trigger an update
+const Block = (props) => {
+  const logoMode = props.logo === 'logo' ? logo : logo_night;
+  const theme = useSelector(selectTheme);
 
-  useEffect(() => {
-    let result = 0;
-    const logos = [logo, logo_nigh];
+  const themeMode = theme === 'day' ? lightTheme : darkTheme;
 
-    const hour = today.getHours();
-    if (hour > 17) {
-      setLogo(logos[1]);
-    } else {
-      setLogo(logos[0]);
-    }
-  }, [content]);
   return (
     <S.Block id='mission'>
       <S.ContentWrapper>
-        <S.Logo src={logo} />
-        <S.Content>
-          {content} <br />
+        <S.Logo src={logoMode} />
+        <S.Content
+          style={{
+            color: themeMode.text,
+          }}
+        >
+          {props.content} <br />
           <Link
             to={{ pathname: 'https://github.com/poboisvert/BotHawks.com' }}
             target='_blank'
