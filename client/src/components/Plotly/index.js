@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Plot from 'react-plotly.js';
 import * as S from './styles';
 
-function Plotly({ data }) {
+function Plotly({ data, background, text }) {
   return (
     <S.ContentWrapper id='chart'>
       <Plot
@@ -13,8 +13,8 @@ function Plotly({ data }) {
           // height: 240,
           autosize: true,
           dragmode: true,
-          plot_bgcolor: '#f0f6f0',
-          paper_bgcolor: '#f0f6f0',
+          plot_bgcolor: background,
+          paper_bgcolor: background,
           margin: {
             l: 0,
             r: 0,
@@ -34,7 +34,7 @@ function Plotly({ data }) {
             mode: 'lines+points',
             marker: {
               size: 5,
-              color: 'black',
+              color: text,
               colorscale: 'Viridis',
               opacity: 0.8,
             },

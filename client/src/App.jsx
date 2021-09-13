@@ -1,14 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 import callAPI from './api';
 import Block from './common/Block';
 import Container from './common/Container';
 import Header from './components/Header';
 import PlotlyComponent from './components/Plotly';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { GlobalStyles } from './common/GlobalStyle';
 import './App.css';
 
+import { settheme } from './common/ThemeSlice';
+import { lightTheme, darkTheme } from './common/ThemeStyle';
+
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const useDarkMode = () => {
+    const [theme, setTheme] = useState('');
+
+    const today = new Date();
+    const hour = today.getHours();
+
+    useEffect(() => {
+      if (hour > 18) {
+        setTheme('night');
+      } else {
+        setTheme('day');
+      }
+    }, [hour]);
+
+    return [theme];
+  };
+
+  const dispatch = useDispatch();
+  const [theme, themeToggler] = useDarkMode();
+
+  dispatch(settheme(theme));
+  const themeMode = theme === 'day' ? lightTheme : darkTheme;
+
   const [latestPrice, setLatestPrice] = useState(0);
   const [data, setData] = useState(0);
 
@@ -27,7 +55,6 @@ function App() {
 
   useEffect(() => {
     fetchData().then((chartData) => {
-      setIsLoading(false);
       setData(chartData);
       setLatestPrice(
         parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2)
@@ -53,16 +80,40 @@ function App() {
     return (
       <>
         <Router>
-          <Header />
-          <Container>
-            <Block content='Our mission is to offer Coinbase live data' />
-            <PlotlyComponent data={data} />
-          </Container>
+          <ThemeProvider theme={themeMode}>
+            <>
+              <GlobalStyles />
+              <Header />
+              <Container>
+                <Block
+                  logo={themeMode.logo}
+                  content='Our mission is to offer Coinbase live data'
+                />
+                <PlotlyComponent
+                  data={data}
+                  background={themeMode.background}
+                  text={themeMode.text}
+                />
+              </Container>
+            </>
+          </ThemeProvider>
         </Router>
       </>
     );
   } else {
-    return <h1>Loading</h1>;
+    return (
+      <ThemeProvider theme={themeMode}>
+        <GlobalStyles />
+
+        <h1
+          style={{
+            color: themeMode.text,
+          }}
+        >
+          Loading
+        </h1>
+      </ThemeProvider>
+    );
   }
 }
 

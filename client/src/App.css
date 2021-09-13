@@ -8,7 +8,6 @@ body {
   padding: 0;
   border: 0;
   outline: 0;
-  background: #f0f6f0;
   overflow-x: hidden;
 }
 a:hover {
@@ -39,12 +38,4 @@ h1 {
 
 *:focus {
   outline: none;
-}
-a {
-  text-decoration: none;
-  outline: none;
-  color: #e16956;
-  :hover {
-    color: #e16956;
-  }
 }
