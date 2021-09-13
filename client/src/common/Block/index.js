@@ -11,11 +11,12 @@ import React, { useState, useEffect } from 'react';
 
 const Block = ({ content }) => {
   const [logo1, setLogo1] = useState('');
-  const logos = [logo, logo_nigh];
   const [today, setDate] = useState(new Date()); // Save the current date to be able to trigger an update
 
   useEffect(() => {
     let result = 0;
+    const logos = [logo, logo_nigh];
+
     const hour = today.getHours();
     if (hour > 17) {
       setLogo1((result = logos[1]));
