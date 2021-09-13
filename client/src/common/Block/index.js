@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 // Switch returns only the first matching route rather than all matching routes.
 
 const Block = ({ content }) => {
-  const [logo1, setLogo1] = useState('');
+  const [logo, setLogo] = useState('');
   const [today, setDate] = useState(new Date()); // Save the current date to be able to trigger an update
 
   useEffect(() => {
@@ -19,15 +19,15 @@ const Block = ({ content }) => {
 
     const hour = today.getHours();
     if (hour > 17) {
-      setLogo1((result = logos[1]));
+      setLogo(logos[1]);
     } else {
-      setLogo1((result = logos[0]));
+      setLogo(logos[0]);
     }
   }, [content]);
   return (
     <S.Block id='mission'>
       <S.ContentWrapper>
-        <S.Logo src={logo1} />
+        <S.Logo src={logo} />
         <S.Content>
           {content} <br />
           <Link
