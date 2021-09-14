@@ -33,6 +33,9 @@ const Block = (props) => {
           <Link
             to={{ pathname: 'https://github.com/poboisvert/BotHawks.com' }}
             target='_blank'
+            style={{
+              color: themeMode.url,
+            }}
           >
             GitHub Project
           </Link>
