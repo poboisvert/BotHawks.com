@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import './App.css';
 
 import { ThemeProvider } from 'styled-components';
 import { useDarkMode } from './common/ThemeAction';
@@ -10,7 +11,6 @@ import Container from './common/Container';
 import Header from './components/Header';
 import PlotlyComponent from './components/Plotly';
 import { BrowserRouter as Router } from 'react-router-dom';
-import './App.css';
 import { GlobalStyles } from './common/GlobalStyle';
 
 import { settheme } from './common/ThemeSlice';
