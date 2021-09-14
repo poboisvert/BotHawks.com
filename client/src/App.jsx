@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { ThemeProvider } from 'styled-components';
+import { useDarkMode } from './common/ThemeAction';
+
 import callAPI from './api';
 import Block from './common/Block';
 import Container from './common/Container';
 import Header from './components/Header';
 import PlotlyComponent from './components/Plotly';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+import { selectTheme } from './common/ThemeSlice';
+import { GlobalStyles } from './common/GlobalStyle';
+
+import { settheme } from './common/ThemeSlice';
+import { lightTheme, darkTheme } from './common/ThemeStyle';
 
 function App() {
+  const [theme, themeToggler] = useDarkMode();
+  const dispatch = useDispatch();
+
+  dispatch(settheme(theme));
+
+  const theme_original = useSelector(selectTheme);
+
+  const themeMode = theme === 'day' ? lightTheme : darkTheme;
+
   const [isLoading, setIsLoading] = useState(true);
   const [latestPrice, setLatestPrice] = useState(0);
   const [data, setData] = useState(0);
@@ -53,11 +73,23 @@ function App() {
     return (
       <>
         <Router>
-          <Header />
-          <Container>
-            <Block content='Our mission is to offer Coinbase live data' />
-            <PlotlyComponent data={data} />
-          </Container>
+          <ThemeProvider theme={themeMode}>
+            <>
+              <GlobalStyles />
+              <Header />
+              <Container>
+                <Block
+                  logo={themeMode.logo}
+                  content='Our mission is to offer Coinbase live data'
+                />
+                <PlotlyComponent
+                  data={data}
+                  background={themeMode.background}
+                  text={themeMode.text}
+                />
+              </Container>
+            </>
+          </ThemeProvider>
         </Router>
       </>
     );
