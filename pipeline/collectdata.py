@@ -1,3 +1,6 @@
+"""collectdata.py
+Opens a subscription to real-time market and historical data via Coinbase PRO API
+"""
 import cbpro, sys
 from pymongo import MongoClient
 import logging
@@ -8,10 +11,15 @@ from datetime import datetime, timedelta
 
 import logging
 import datetime as dt
-import requests, time
-import json, bson
+import time, requests
+import json
+import argparse
 
 logging.basicConfig(level=20, datefmt='%I:%M:%S', format='[%(asctime)s] %(message)s')
+
+parser = argparse.ArgumentParser(description='Punisher Dash Vizualizer')
+parser.add_argument('-n', '--name', help='name of your experiment', default='default', type=str)
+
 
 # specify the database and collection
 mongo_client = MongoClient('mongodb://localhost:27017/')
@@ -80,8 +88,14 @@ class myWebsocketClient(WebsocketClient):
 
 # real time data collector
 def getHistorical(crypto,start_date,end_date,gran):
-
-    # call API
+    """
+    Description: load the fact table and the dim tables
+    Arguments:
+        cur: the cursor object. 
+        conn: the conection to the postgresSQL.
+    Returns:
+        None
+    """
     URL = 'https://api.pro.coinbase.com/products/{0}-{1}/{2}?start={3}&end={4}&granularity={5}'.format(crypto, "USD", 'candles',start_date,end_date,gran)
     res = requests.get(URL)
 
@@ -119,7 +133,14 @@ def getHistorical(crypto,start_date,end_date,gran):
         print('FAILED API request at time {0}'.format(dt.datetime.utcnow()))
 
 def getLive():
-    # cbpro - INIT
+    """
+    Description: load the fact table and the dim tables
+    Arguments:
+        cur: the cursor object. 
+        conn: the conection to the postgresSQL.
+    Returns:
+        None
+    """
     try:
         wsClient = myWebsocketClient(url="wss://ws-feed.pro.coinbase.com", products="ETH-USD", mongo_collection=BTC_collection, should_print=False, channels=["ticker"])
         wsClient.start()
@@ -158,4 +179,3 @@ if __name__ == '__main__':
     # Collection Name - ML
     collection_cursor = BTC_collection.find()
     df = list(collection_cursor)
-    #print(df)

@@ -4,6 +4,11 @@ import time
 from decimal import Decimal
 import requests
 from bintrees import FastRBTree
+import argparse
+
+parser = argparse.ArgumentParser(description='Punisher Dash Vizualizer')
+parser.add_argument('-n', '--name', help='name of your experiment', default='default', type=str)
+
 
 # Init Mongo DB
 MONGO_DETAILS = "mongodb://localhost:27017"
@@ -19,9 +24,8 @@ collection_cursor = BTC_collection.find()
 df = list(collection_cursor)
 
 # print(df)
-class Tree(object):
+class SimpleStrategy(object):
     def __init__(self):
-        self.price_tree = FastRBTree()
         self.price_map = {}
         self.order_map = {}
         self.received_orders = {}
