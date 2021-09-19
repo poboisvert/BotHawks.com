@@ -17,6 +17,8 @@ BTC_collection = db.BTC_collection
 collection_cursor = BTC_collection.find()
 
 parser = argparse.ArgumentParser(description='Moving Average Charts')
+parser.add_argument('--c', action='store_true', dest='command_line', default=False, help='Command line output')
+parser.add_argument('--t', action='store_true', dest='trading', default=False, help='Trade')
 
 class sma():
     def __init__(self, asset, quantity):
