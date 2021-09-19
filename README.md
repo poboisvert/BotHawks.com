@@ -53,6 +53,14 @@ The client interface offer live price update from the Coinbase API and a possibl
 
 > db.dropDatabase()
 
+## ENV for trading secret
+
+```
+COINBASE_EXCHANGE_API_KEY=
+COINBASE_EXCHANGE_API_SECRET=
+COINBASE_EXCHANGE_API_PASSPHRASE=
+```
+
 #### References
 
 - https://github.com/danpaquin/coinbasepro-python

@@ -9,7 +9,7 @@ import json
 from dateutil.tz import tzlocal
 from strategy.tree import Tree
 import requests
-
+from trading import file_logger
 
 class Book(object):
     def __init__(self):
