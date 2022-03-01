@@ -55,6 +55,8 @@ The client interface offer live price update from the Coinbase API and a possibl
 
 ## ENV for trading secret
 
+Please use coinbase pro.
+
 ```
 COINBASE_EXCHANGE_API_KEY=
 COINBASE_EXCHANGE_API_SECRET=

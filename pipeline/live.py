@@ -1,20 +1,16 @@
-"""collectdata.py
-Opens a subscription to real-time market and historical data via Coinbase PRO API
-"""
 import asyncio
-
-import cbpro, sys
+import sys
 import logging
 from cbpro.websocket_client import WebsocketClient
 from socket import gaierror
 from datetime import datetime, timedelta
-import numpy
 from pprint import pformat
 
 import logging
 import datetime as dt
 import time, requests
 import json
+import numpy
 import argparse
 from dateutil.tz import tzlocal
 import pytz
@@ -72,7 +68,6 @@ def getLive():
             time.sleep(1)
             
             messages = []
-
             message = coinbase_websocket.msg
             # {'type': 'ticker', 'sequence': 20890370388, 'product_id': 'ETH-USD', 'price': '3390.6', 'open_24h': '3409.87', 'volume_24h': '123863.38933070', 'low_24h': '3377', 'high_24h': '3543', 'volume_30d': '5467679.65170842', 'best_bid': '3390.20', 'best_ask': '3390.60', 'side': 'buy', 'time': '2021-09-19T01:18:21.963162Z', 'trade_id': 157087756, 'last_size': '0.06209744'}
             messages += [message]
@@ -81,6 +76,7 @@ def getLive():
                 break
 
             order_book.get_level3()
+            # Most recent sequence
             [order_book.process_message(message) for message in messages if message['sequence'] > order_book.level3_sequence]
 
             messages = []

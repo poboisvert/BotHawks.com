@@ -1,13 +1,9 @@
-# From https://docs.pro.coinbase.com/#signing-a-message
-
 import time
 
 import hmac
 import hashlib
 import base64
 from requests.auth import AuthBase
-
-## using existing module to specify location of the .env file
 from dotenv import load_dotenv
 from pathlib import Path
 import os

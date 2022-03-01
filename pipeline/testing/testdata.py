@@ -49,8 +49,8 @@ if __name__ == '__main__':
     first_sequence = beginning_level_3['sequence']
     print(messages)
 
-    with open('testing/messages.json', 'w') as json_file:
+    with open('messages.json', 'w') as json_file:
         json.dump(messages, json_file, indent=4, sort_keys=True)
 
-    with open('testing/beginning_level_3.json', 'w') as json_file:
+    with open('beginning_level_3.json', 'w') as json_file:
         json.dump(beginning_level_3, json_file, indent=4, sort_keys=True)
